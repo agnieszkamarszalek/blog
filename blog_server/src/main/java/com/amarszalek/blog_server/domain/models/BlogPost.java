@@ -2,10 +2,9 @@ package com.amarszalek.blog_server.domain.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -18,7 +17,7 @@ public class BlogPost {
     private String authorName;
     private String authorUserName;
     private String content;
-    private Date modificationDate;
+    private LocalDate modificationDate;
     private String subject;
     @ElementCollection
     @CollectionTable(name="post_tags", joinColumns=@JoinColumn(name="post_id"))
