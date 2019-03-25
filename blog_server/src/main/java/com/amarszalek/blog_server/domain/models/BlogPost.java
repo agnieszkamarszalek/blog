@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class BlogPost {
     private String authorName;
     private String authorUserName;
     private String content;
-    private LocalDate modificationDate;
+    private LocalDateTime modificationDate;
     private String subject;
     @ElementCollection
     @CollectionTable(name="post_tags", joinColumns=@JoinColumn(name="post_id"))

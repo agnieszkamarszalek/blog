@@ -6,19 +6,22 @@ import com.amarszalek.blog_server.domain.infrastructure.dtos.BlogPostDto;
 import com.amarszalek.blog_server.domain.infrastructure.dtos.BlogPostResponseDto;
 import com.amarszalek.blog_server.domain.models.BlogPost;
 import com.amarszalek.blog_server.domain.repositories.BlogPostRepository;
+import com.amarszalek.blog_server.domain.utils.DateProvider;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @AllArgsConstructor
 public class BlogPostFacade {
     private BlogPostRepository blogPostRepository;
     private ModelMapper modelMapper;
+    private DateProvider dateProvider;
 
     public BlogPostResponseDto saveBlogPost(BlogPostDto blogPostDto){
         BlogPost blogPost = modelMapper.map(blogPostDto, BlogPost.class);
-        setDateToBlogPost(blogPost);
+        setDateAndTimeToBlogPost(blogPost);
         try {
             BlogPost blogPostEntity = blogPostRepository.save(blogPost);
             return modelMapper.map(blogPostEntity, BlogPostResponseDto.class);
@@ -27,10 +30,9 @@ public class BlogPostFacade {
         }
     }
 
-    private void setDateToBlogPost(BlogPost blogPost) {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        LocalDate localDate = localDateTime.toLocalDate();
-        blogPost.setModificationDate(localDate);
+    private void setDateAndTimeToBlogPost(BlogPost blogPost) {
+        LocalDateTime currentDateTime = dateProvider.getCurrentDateTime();
+        blogPost.setModificationDate(currentDateTime);
     }
 
     public BlogPostResponseDto getBlogPostById(Long id) {
