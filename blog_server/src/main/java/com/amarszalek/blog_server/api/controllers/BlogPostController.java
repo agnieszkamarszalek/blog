@@ -1,7 +1,7 @@
 package com.amarszalek.blog_server.api.controllers;
 
 import com.amarszalek.blog_server.domain.facades.BlogPostFacade;
-import com.amarszalek.blog_server.domain.infrastructure.dtos.BlogPostDto;
+import com.amarszalek.blog_server.infrastructure.dtos.BlogPostDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

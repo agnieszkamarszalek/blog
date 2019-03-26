@@ -1,8 +1,8 @@
 package com.amarszalek.blog_server.abstractTestClasses;
 
 import com.amarszalek.blog_server.BlogServerApplication;
-import com.amarszalek.blog_server.domain.infrastructure.dtos.BlogPostDto;
-import com.amarszalek.blog_server.domain.infrastructure.dtos.BlogPostResponseDto;
+import com.amarszalek.blog_server.infrastructure.dtos.BlogPostDto;
+import com.amarszalek.blog_server.infrastructure.dtos.BlogPostResponseDto;
 import com.amarszalek.blog_server.domain.models.BlogPost;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;

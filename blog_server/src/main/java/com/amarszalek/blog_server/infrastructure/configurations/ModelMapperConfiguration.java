@@ -1,4 +1,4 @@
-package com.amarszalek.blog_server.domain.infrastructure.configurations;
+package com.amarszalek.blog_server.infrastructure.configurations;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

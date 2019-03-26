@@ -1,8 +1,8 @@
 package com.amarszalek.blog_server.controllers;
 
 import com.amarszalek.blog_server.abstractTestClasses.AbstractBlogPostTest;
-import com.amarszalek.blog_server.domain.infrastructure.dtos.BlogPostDto;
-import com.amarszalek.blog_server.domain.infrastructure.dtos.BlogPostResponseDto;
+import com.amarszalek.blog_server.infrastructure.dtos.BlogPostDto;
+import com.amarszalek.blog_server.infrastructure.dtos.BlogPostResponseDto;
 import com.amarszalek.blog_server.domain.models.BlogPost;
 import com.amarszalek.blog_server.domain.repositories.BlogPostRepository;
 import com.amarszalek.blog_server.domain.utils.DateProvider;
