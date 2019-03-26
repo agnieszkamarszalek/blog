@@ -11,7 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public abstract class AbstractBlogPostTest {
     private String authorName = "Jon Don";
     private String authorUserName = "donjon";
     private String content = "new blog post";
-    private static LocalDateTime date;
+    protected static LocalDateTime date;
     private String subject = "about new posts";
     private List<String> tags = Arrays.asList("new post", "blog post");
 

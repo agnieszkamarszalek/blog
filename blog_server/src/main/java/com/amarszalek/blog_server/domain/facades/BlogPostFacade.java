@@ -9,9 +9,7 @@ import com.amarszalek.blog_server.domain.repositories.BlogPostRepository;
 import com.amarszalek.blog_server.domain.utils.DateProvider;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @AllArgsConstructor
 public class BlogPostFacade {
