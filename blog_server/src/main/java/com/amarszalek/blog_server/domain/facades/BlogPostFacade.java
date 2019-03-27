@@ -16,12 +16,14 @@ public class BlogPostFacade {
     private BlogPostRepository blogPostRepository;
     private ModelMapper modelMapper;
     private DateProvider dateProvider;
+    private NotificationServiceFacade notificationServiceFacade;
 
     public BlogPostResponseDto saveBlogPost(BlogPostDto blogPostDto){
         BlogPost blogPost = modelMapper.map(blogPostDto, BlogPost.class);
         setDateAndTimeToBlogPost(blogPost);
         try {
             BlogPost blogPostEntity = blogPostRepository.save(blogPost);
+            notificationServiceFacade.sendNotificationListToNotificationService(blogPostEntity.getAuthorUserName());
             return modelMapper.map(blogPostEntity, BlogPostResponseDto.class);
         } catch (Exception e) {
             throw new EntityNotCreatedException("Blog post not created");

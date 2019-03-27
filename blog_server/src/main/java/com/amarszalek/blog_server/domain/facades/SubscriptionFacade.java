@@ -11,6 +11,10 @@ import lombok.AllArgsConstructor;
 import org.hibernate.validator.internal.engine.ConstraintViolationImpl;
 import org.modelmapper.ModelMapper;
 import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class SubscriptionFacade {
@@ -48,5 +52,17 @@ public class SubscriptionFacade {
         } catch (Exception e) {
             throw new EntityCouldNotBeFoundException("Entity wasn't deleted because it doesn't exist.");
         }
+    }
+
+    List<String> findAllSubscribed(String authorUserName) {
+        List<String> subscribedUserId = new ArrayList<>();
+        Optional<List<Subscription>> subscriptionListOptional = subscriptionRepository.findByAuthorUserName(authorUserName);
+        if (subscriptionListOptional.isPresent()) {
+            List<Subscription> subscriptionList = subscriptionListOptional.get();
+            subscribedUserId = subscriptionList.stream()
+                    .map(Subscription::getUserId)
+                    .collect(Collectors.toList());
+        }
+        return subscribedUserId;
     }
 }
