@@ -13,6 +13,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
@@ -65,5 +69,22 @@ public class SubscriptionFacadeTest extends AbstractSubscriptionTest {
                 .deleteById(any(long.class));
         //when
         subscriptionFacade.deleteSubscription(1);
+    }
+
+    @Test
+    public void shouldReturnExpectedAllSubscribedList() {
+        //given
+        ArrayList<Subscription> subscriptionList = new ArrayList<>();
+        Subscription subscription2 = super.sampleSubscription();
+        subscription2.setUserId("2");
+        subscriptionList.add(super.sampleSubscription());
+        subscriptionList.add(subscription2);
+        Optional<List<Subscription>> subscriptionListOptional = Optional.of(subscriptionList);
+        when(subscriptionRepository.findByAuthorUserName(any(String.class)))
+                .thenReturn(subscriptionListOptional);
+        //when
+        List<String> allSubscribed = subscriptionFacade.findAllSubscribed("aga");
+        //then
+        Assert.assertEquals(Arrays.asList("1", "2"), allSubscribed);
     }
 }
