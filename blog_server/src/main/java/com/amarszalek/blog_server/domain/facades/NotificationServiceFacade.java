@@ -20,8 +20,8 @@ public class NotificationServiceFacade {
         List<String> allSubscribed = subscriptionFacade.findAllSubscribed(authorUserName);
         List<Notification> notificationList =
                 allSubscribed.stream()
-                        .map(subscribedId ->
-                                new Notification(subscribedId, authorUserName + " added new post. Check it out!")
+                        .map(subscribedEmailAddress ->
+                                new Notification(authorUserName + " added new post. Check it out!", subscribedEmailAddress)
                         )
                         .collect(Collectors.toList());
         if (!notificationList.isEmpty()) {

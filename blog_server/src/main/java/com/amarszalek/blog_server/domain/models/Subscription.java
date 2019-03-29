@@ -20,4 +20,5 @@ public class Subscription {
     private String userId;
     @NotEmpty(message = "author user name can't be empty")
     private String authorUserName;
+    private String emailAddress;
 }

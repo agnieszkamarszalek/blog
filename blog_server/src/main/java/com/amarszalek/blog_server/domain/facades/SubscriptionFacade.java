@@ -60,7 +60,7 @@ public class SubscriptionFacade {
         if (subscriptionListOptional.isPresent()) {
             List<Subscription> subscriptionList = subscriptionListOptional.get();
             subscribedUserId = subscriptionList.stream()
-                    .map(Subscription::getUserId)
+                    .map(Subscription::getEmailAddress)
                     .collect(Collectors.toList());
         }
         return subscribedUserId;
