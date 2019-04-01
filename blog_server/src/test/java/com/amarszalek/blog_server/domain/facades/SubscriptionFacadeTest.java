@@ -76,7 +76,7 @@ public class SubscriptionFacadeTest extends AbstractSubscriptionTest {
         //given
         ArrayList<Subscription> subscriptionList = new ArrayList<>();
         Subscription subscription2 = super.sampleSubscription();
-        subscription2.setUserId("2");
+        subscription2.setEmailAddress("exampleEmail2@gmail.com");
         subscriptionList.add(super.sampleSubscription());
         subscriptionList.add(subscription2);
         Optional<List<Subscription>> subscriptionListOptional = Optional.of(subscriptionList);
@@ -85,6 +85,6 @@ public class SubscriptionFacadeTest extends AbstractSubscriptionTest {
         //when
         List<String> allSubscribed = subscriptionFacade.findAllSubscribed("aga");
         //then
-        Assert.assertEquals(Arrays.asList("1", "2"), allSubscribed);
+        Assert.assertEquals(Arrays.asList("exampleEmail@gmail.com", "exampleEmail2@gmail.com"), allSubscribed);
     }
 }

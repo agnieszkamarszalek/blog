@@ -55,14 +55,14 @@ public class SubscriptionFacade {
     }
 
     List<String> findAllSubscribed(String authorUserName) {
-        List<String> subscribedUserId = new ArrayList<>();
+        List<String> subscribedEmailAddresses = new ArrayList<>();
         Optional<List<Subscription>> subscriptionListOptional = subscriptionRepository.findByAuthorUserName(authorUserName);
         if (subscriptionListOptional.isPresent()) {
             List<Subscription> subscriptionList = subscriptionListOptional.get();
-            subscribedUserId = subscriptionList.stream()
+            subscribedEmailAddresses = subscriptionList.stream()
                     .map(Subscription::getEmailAddress)
                     .collect(Collectors.toList());
         }
-        return subscribedUserId;
+        return subscribedEmailAddresses;
     }
 }

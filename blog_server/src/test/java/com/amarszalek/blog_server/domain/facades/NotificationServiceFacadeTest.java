@@ -35,11 +35,11 @@ public class NotificationServiceFacadeTest {
             throws ExecutionException, InterruptedException {
         //given
         String authorUserName = "any user name";
-        List<String> allSubscribed = Arrays.asList("1", "2", "3");
+        List<String> allSubscribed = Arrays.asList("exampleEmail1@gmail.com", "exampleEmail2@gmail.com", "exampleEmail3@gmail.com");
         List<Notification> expectedNotificationList = Arrays.asList(
-                new Notification("1",authorUserName + " added new post. Check it out!"),
-                new Notification("2",authorUserName + " added new post. Check it out!"),
-                new Notification("3",authorUserName + " added new post. Check it out!"));
+                new Notification(authorUserName + " added new post. Check it out!","exampleEmail1@gmail.com" ),
+                new Notification(authorUserName + " added new post. Check it out!","exampleEmail2@gmail.com" ),
+                new Notification(authorUserName + " added new post. Check it out!", "exampleEmail3@gmail.com"));
         when(subscriptionFacade.findAllSubscribed(authorUserName)).thenReturn(allSubscribed);
         //when
         Future future = notificationServiceFacade.sendNotificationListToNotificationService(authorUserName);

@@ -16,11 +16,13 @@ public abstract class AbstractSubscriptionTest {
 
     private String userId = "1";
     private String authorUserName = "aga";
+    private String emailAddress = "exampleEmail@gmail.com";
 
     protected SubscriptionDto sampleSubscriptionDto() {
         SubscriptionDto subscriptionDto = new SubscriptionDto();
         subscriptionDto.setAuthorUserName(authorUserName);
         subscriptionDto.setUserId(userId);
+        subscriptionDto.setEmailAddress(emailAddress);
         return subscriptionDto;
     }
 
@@ -28,6 +30,7 @@ public abstract class AbstractSubscriptionTest {
         Subscription subscription = new Subscription();
         subscription.setAuthorUserName(authorUserName);
         subscription.setUserId(userId);
+        subscription.setEmailAddress(emailAddress);
         return subscription;
     }
 
