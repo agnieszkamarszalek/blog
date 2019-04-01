@@ -9,23 +9,11 @@ import java.util.Properties;
 
 public class EmailService {
 
-    private String host;
-    private int port;
     private String username;
-    private String pass;
+    private Session session;
 
-
-    public EmailService(String host, int port, String username, String password, String messageToSend, String emailAddress) {
-
-        this.host = host;
-        this.port = port;
+    public EmailService(String host, int port, String username, String password) {
         this.username = username;
-        this.pass = password;
-
-        sendMail(messageToSend, emailAddress);
-    }
-
-    private void sendMail(String messageToSend, String emailAddress) {
 
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
@@ -34,16 +22,18 @@ public class EmailService {
         prop.put("mail.smtp.port", port);
         prop.put("mail.smtp.ssl.trust", host);
 
-        Session session = Session.getInstance(prop, new Authenticator() {
+        this.session = Session.getInstance(prop, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, pass);
+                return new PasswordAuthentication(username, password);
             }
         });
+    }
 
+    public void sendMail(String messageToSend, String emailAddress) {
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("setFrom@gmail.com"));
+            message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailAddress));
             message.setSubject("Mail Subject");
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
@@ -52,7 +42,6 @@ public class EmailService {
             multipart.addBodyPart(mimeBodyPart);
             message.setContent(multipart);
             Transport.send(message);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

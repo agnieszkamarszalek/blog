@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubscriptionDto {
-    private long id;
     private String userId;
     private String authorUserName;
     private String emailAddress;

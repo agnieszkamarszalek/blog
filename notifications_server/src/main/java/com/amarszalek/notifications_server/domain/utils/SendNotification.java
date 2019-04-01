@@ -6,11 +6,10 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SendNotification implements Runnable {
     private Notification notification;
+    private EmailService emailService;
 
     @Override
     public void run() {
-        new EmailService("smtp.gmail.com", 25, "emailAddress@gmail.com", "password",
-                notification.getMessage(), notification.getEmailAddress()
-                );
+        this.emailService.sendMail(notification.getMessage(), notification.getEmailAddress());
     }
 }
