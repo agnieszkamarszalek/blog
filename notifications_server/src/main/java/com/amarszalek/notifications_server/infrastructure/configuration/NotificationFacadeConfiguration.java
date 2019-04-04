@@ -2,9 +2,9 @@ package com.amarszalek.notifications_server.infrastructure.configuration;
 
 import com.amarszalek.notifications_server.domain.facades.NotificationFacade;
 import com.amarszalek.notifications_server.domain.utils.EmailService;
+import com.amarszalek.notifications_server.domain.utils.TransportWrapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,6 +28,7 @@ public class NotificationFacadeConfiguration {
                 "smtp.gmail.com",
                 25,
                 "emailAddress@gmail.com",
-                "password");
+                "password",
+                new TransportWrapper());
     }
 }

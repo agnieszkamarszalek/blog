@@ -11,9 +11,11 @@ public class EmailService {
 
     private String username;
     private Session session;
+    private TransportWrapper transportWrapper;
 
-    public EmailService(String host, int port, String username, String password) {
+    public EmailService(String host, int port, String username, String password, TransportWrapper transportWrapper) {
         this.username = username;
+        this.transportWrapper = transportWrapper;
 
         Properties prop = new Properties();
         prop.put("mail.smtp.auth", true);
@@ -41,7 +43,7 @@ public class EmailService {
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(mimeBodyPart);
             message.setContent(multipart);
-            Transport.send(message);
+            transportWrapper.senMessage(message);
         } catch (Exception e) {
             e.printStackTrace();
         }
