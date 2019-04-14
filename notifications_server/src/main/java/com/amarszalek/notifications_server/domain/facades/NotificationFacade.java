@@ -14,6 +14,7 @@ public class NotificationFacade {
 
     private EmailService emailService;
     private ExecutorService executorService;
+
     public void sendNotifications(List<Notification> notifications) {
         for (Notification notification: notifications) {
             executorService.execute(new SendNotification(notification, this.emailService));

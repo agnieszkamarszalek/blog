@@ -29,6 +29,11 @@ public class NotificationFacadeConfiguration {
                 25,
                 "emailAddress@gmail.com",
                 "password",
-                new TransportWrapper());
+                transportWrapper());
+    }
+
+    @Bean
+    TransportWrapper transportWrapper() {
+        return new TransportWrapper();
     }
 }

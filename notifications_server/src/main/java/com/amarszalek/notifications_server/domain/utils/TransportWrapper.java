@@ -7,7 +7,7 @@ import javax.mail.Transport;
 
 public class TransportWrapper {
 
-    public void senMessage(Message message) throws MessagingException {
+    public void sendMessage(Message message) throws MessagingException {
         Transport.send(message);
     }
 }
